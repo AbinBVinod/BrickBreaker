@@ -3,8 +3,7 @@
 #include<stdio.h>
 #include<string.h>
 #include <math.h>
-//#include<iostream>
-//using namespace std;
+
 
 
 int score = 0;
@@ -17,11 +16,11 @@ GLfloat brick_color_array[][3] = {{1,0,0},{0,0,1},{0,1,0},{1,0,1},{1,1,0},{0,1,1
 GLfloat paddle_color_array[][3] = {{1,0,0},{0,0,1},{0,1,0},{1,0,1},{1,1,0},{0,1,1}};
 GLfloat text_color_array[][4] = {{1,0,0,1},{0,0,1,1},{0,1,0,1},{1,0,1,1},{1,1,0,1},{0,1,1,1}};
 GLfloat paddle_size[] = {2,4,6};
-//The grid parameters for the bricks
+
 int rows = 4;
 int columns = 10;
 
-// Structure to store the coordinates of each brick
+
 struct brick_coords{
 
 	GLfloat x;
@@ -49,7 +48,7 @@ void draw_paddle()
 }
 
 
-//Function to draw a single brick
+
 void brick(GLfloat x,GLfloat y, GLfloat z)
 {
 
@@ -65,7 +64,7 @@ void brick(GLfloat x,GLfloat y, GLfloat z)
 }
 
 
-// Function to draw the grid of bricks
+
 void draw_bricks()
 {
 
@@ -103,7 +102,7 @@ void draw_bricks()
 
 }
 
-//Function to draw the spherical ball
+
 void draw_ball()
 {
 	GLfloat ambient1[] = {1,1,1};
@@ -138,7 +137,7 @@ void draw_ball()
 	glPushMatrix();
 	glTranslatef(bx,by,0);
 	glScalef(1.0, 1.0, 0.5);
-	//glScalef(size[i], size[], size[]);
+	
 	glutSolidSphere(1.0, 52, 52);
 
 	glPopMatrix();
@@ -146,7 +145,6 @@ void draw_ball()
 }
 
 
-//mouse function
 void mousemotion(int x,int y)
 {
 
@@ -166,52 +164,52 @@ void mousemotion(int x,int y)
     else glutSetCursor(GLUT_CURSOR_INHERIT);
 }
 
-//handle brick color
+
 void change_brick_color(int action)
 {
 
 	brick_color=action-1;
 }
 
-//handle ball color
+
 void change_ball_color(int action)
 {
 
 	ball_color=action-1;
 }
 
-//handle level
+
 void change_difficulty(int action)
 {
 
 	level=action-1;
 }
 
-//handle menu
+
 void handle_menu(int action)
 {
 
 }
 
-//handle paddle color
+
 void change_paddle_color(int action)
 {
 	paddle_color = action -1;
 }
 
-//handle paddle color
+
 void change_text_color(int action)
 {
 	text_color = action -1;
 }
 
-//handle paddle size
+
 void change_paddle_size(int action)
 {
 	size = action -1;
 }
 
-//add menu
+
 void addMenu()
 {
 
@@ -271,7 +269,7 @@ void addMenu()
 
 
 
-//Function to print the score on the screen
+
 void text( int sc)
 {
 	glDisable(GL_LIGHTING);
@@ -316,7 +314,7 @@ void text( int sc)
 	glPopMatrix();
 }
 
-//The main display function
+
 void display (void) {
 
 	glClearColor (0.0,0.0,0.0,1.0);
@@ -333,7 +331,6 @@ void display (void) {
 
 
 
-//function to turn on lights
 void lightsOn()
 {
 	glEnable(GL_LIGHTING);
@@ -350,7 +347,7 @@ void reshape (int w, int h) {
 }
 
 
-//function to take in keyboard entries
+
 void keyboard (unsigned char key, int x, int y)
 {
 	switch(key)
@@ -386,7 +383,7 @@ void keyboard (unsigned char key, int x, int y)
 }
 
 
-//Function to handle the case when the ball strikes the bricks
+
 void hit()
 {
 	int i,j;
@@ -414,13 +411,13 @@ void hit()
 					dirx= dirx*-1;
 					score++;
 				}
-				//cout<<bx<<" "<<by<<"\t"<<brick_array[i][j].x<<" "<<brick_array[i][j].y;
+				
 			}
 		}
 }
 
 
-//The idle function. Handles the motion of the ball along with rebounding from various surfaces
+
 void idle()
 {
 	hit();
@@ -434,10 +431,10 @@ void idle()
 	}
 	bx+=dirx/(rate);
 	by+=diry/(rate);
-	rate-=0.001; // Rate at which the speed of ball increases
+	rate-=0.001; 
 
 	float x = paddle_size[size];
-	//Make changes here for the different position of ball after rebounded by paddle
+	
 	if( by<=-12.8 && bx<(px+x*2/3) && bx>(px+x/3)&& start == 1 )
 	{
 		dirx = 1;
